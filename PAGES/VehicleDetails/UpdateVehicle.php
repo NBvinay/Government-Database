@@ -16,7 +16,7 @@
     // header("Location: register.php");
   }
 
-  if(isset($_POST['submit1']))
+  if(isset($_POST['submit']))
   {
       $adharNumber = $_POST['adharNumber'];
       $regNo = $_POST['regNo'];
@@ -44,31 +44,7 @@
     
   }
   
-    if(isset($_POST['submit2']))
-  {
-      $newadharNumber = $_POST['newadharNumber'];
-      $regNo = $_POST['regNo'];
-       
-        
-        if (!( $regNo== NULL || $newadharNumber==NULL))
-        {
-         
-          // Nigga Change acc to db
-		  mysqli_query($con , "UPDATE `vehicle_details` SET `Aadhar Number` = '$newadharNumber' WHERE `Registration Number`= '$regNo' ;");
-          $flag = 0;
-          
-        }
-        
-        
-      
-      if($flag == 1)
-      {
-        echo "Please enter all the details correctly";
-      }
-      $flag = 1;
-
-    
-  }
+  
 ?><!DOCTYPE html>
 <html>
 <title>W3.CSS</title>
@@ -102,7 +78,7 @@
       
       
       <div class="tab-content">   
-          <h1><b><b><div style="color:white;">Update Vehicle Details</div></b></b></h1>
+          <h1><b><b><div style="color:white;">Update Vehicle Insurance</div></b></b></h1>
 		  
 		  
           
@@ -121,7 +97,7 @@
                     <input type="text"required autocomplete="off" name="regNo"/>
                 </div>
                       
-                  <h1><b><b><div style="color:white;">Update Insurance </div></b></b></h1>
+                  
                  <div class="field-wrap">
                                 <label>
                                        New Insurance Number<span class="req">*</span>
@@ -132,17 +108,8 @@
                       </div>
                     
                    
-              <button type="submit" class="button button-block" name="submit1" id="submit1"/>Update Details</button>
-			  </br><h1>OR</h1>
-			  
-			  <h1><b><b><div style="color:white;">Update Ownership </div></b></b></h1>
-			 <div class="field-wrap">
-                      <label>
-                            New Owner Aadhar Number<span class="req">*</span>
-                      </label>
-                  <input type="text"required autocomplete="off" name="newadharNumber"/>
-                </div>
-				<button type="submit" class="button button-block" name="submit2" id="submit2"/>Update Owner</button>
+              <button type="submit" class="button button-block" name="submit1" id="submit1"/>Update Insurance</button>
+			 
           </form>
         </div>
       </div>  
