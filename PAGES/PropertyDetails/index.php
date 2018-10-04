@@ -19,22 +19,21 @@
   if(isset($_POST['submit']))
   {
       $adharNumber = $_POST['adharNumber'];
-      $propCount = $_POST['propCount'];
-      $katha = $_POST['katha'];
-      $city = $_POST['city'];
-      $postalAddress = $_POST['postalAddress'];
+      $katha = $_POST['ppt_katha'];
+      $regNo = $_POST['ppt_regNo'];
+      $area = $_POST['ppt_area'];
+      $postalAddress = $_POST['ppt_postalAddress'];
+      
       $flag = 1;
 
       foreach ($katha as $key => $value) 
       { 
         // $count = $count +1;
-        if (!($propCount== NULL || $katha[$key]== NULL || $city[$key]== NULL || $postalAddress[$key]== NULL || $adharNumber==NULL))
+        if (!($katha[$key]== NULL || $area[$key]== NULL || $postalAddress[$key]== NULL || $adharNumber==NULL  || $regNo[$key]==NULL))
         {
-         
-          // Nigga Change acc to db
-		  //mysqli_query($con , "INSERT INTO `vehicle_details` (`Aadhar Number`, `WheelNumber`, `Registration Number`, `DL Number`, `Insurance Number`) VALUES ('$adharNumber', '$propCount', '$katha[$key]', '$city[$key]', '$postalAddress[$key]');");
+
+		  mysqli_query($con , "INSERT INTO `property_details` (`Aadhar Number`, `ppt_regNo`, `Katha`, `City`, `Postal Address`) VALUES ('$adharNumber',    '$regNo[$key]', '$katha[$key]', '$area[$key]', '$postalAddress[$key]');");
           $flag = 0;
-          
         }
         
         
@@ -44,8 +43,6 @@
         echo "Please enter all the vehicle details correctly";
       }
       $flag = 1;
-
-    
   }
 ?>
 
@@ -93,54 +90,44 @@
                   <input type="text"required autocomplete="off" name="adharNumber" />
                 </div>
 
-
-
-                
-                
-
                 <div class="input_fields_wrap">    
                    <div>
-
-                         <div class="field-wrap">
-                              <label>
-                                     No. of properties owned ?<span class="req">*</span>
-                              </label>
-                              <input type="text" required autocomplete="off" name="propCount" />
-                        </div>
-                        
-                              
+     
 				<button class="add_field_button" style="border-radius: 35%;background-color: #35e8b7; height: 35px "><b><b> +</b></b></button>
                                   
                         <div class="field-wrap">
                               <label>
                                    Katha<span class="req">*</span>
                               </label>
-                              <input type="text"required autocomplete="off" id="katha[]" name="katha[]" />
+                              <input type="text"required autocomplete="off" id="katha[]" name="ppt_katha[]" />
+                        </div>
+
+                        <div class="field-wrap">
+                                  <label>
+                                         Registration Number<span class="req">*</span>
+                                  </label>
+                              <input type="text"required autocomplete="off"  name="ppt_regNo[]" />
                         </div>
                       
                       <div class="field-wrap">
                                   <label>
-                                         City<span class="req">*</span>
+                                         Area<span class="req">*</span>
                                   </label>
-                              <input type="text"required autocomplete="off"  name="city[]" />
+                              <input type="text"required autocomplete="off"  name="ppt_area[]" />
                         </div>
+
                       <div class="field-wrap">
                                 <label>
                                        Postal Address<span class="req">*</span>
                                 </label>
-                            <input type="text"required autocomplete="off" name="postalAddress[]" />
-
+                            <input type="text"required autocomplete="off" name="ppt_postalAddress[]" />
 
                       </div>
                     
                     </div>
                 </div>
-            
-               
+      
                 <button type="submit" class="button button-block" id="submit" name="submit"/>Submit Details</button>
-
-
-
 
           </form>
 
@@ -162,6 +149,9 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js">  </script>
     
+
+
+
   
 <script>
   $(document).ready(function() 
@@ -179,12 +169,13 @@
         if(x < max_fields){ //max input box allowed
   
          //text box increment
-            $(wrapper).append('<div><button class="remove_field" style="background-color:#ff5230;"><b><b> -</b></b></button><div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Katha" name="katha[]"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off" placeholder= "City" name="city[]"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Postal Address" name="postalAddress[]"/></div> <br><br><br></div> </div> '); //add input box
+            $(wrapper).append('<div><button class="remove_field" style="background-color:#ff5230;"><b><b> -</b></b></button><div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Katha" name="katha[]"/> </div> <div class="field-wrap">  <label> Registration Number<span class="req">*</span>  </label>  <input type="text"required autocomplete="off"  name="ppt_regNo[]" />  </div><div class="field-wrap"><input type="text"required autocomplete="off" placeholder= "Area" name="ppt_area[]"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Postal Address" name="postalAddress[]"/></div> <br><br><br></div> </div> '); //add input box
             x++; 
     }
     });
    
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+    $(wrapper).on("click",".remove_field", function(e)
+    { //user click on remove text
        
     e.preventDefault(); 
     $(this).parent('div').remove(); 
