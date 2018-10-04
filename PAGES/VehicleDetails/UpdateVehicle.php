@@ -62,7 +62,7 @@
 <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
   <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
   <a href="index.php" class="w3-bar-item w3-button"><h2>Insert Data</h2></a>
-  <a href="updateVehicle.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
+  <a href="UpdateVehicle.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
   <a href="DeleteVehicle.php" class="w3-bar-item w3-button"><h2>Delete Data</h2></a>
 </div>
 
