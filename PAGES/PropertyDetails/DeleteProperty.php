@@ -41,9 +41,9 @@
 <!-- Sidebar -->
 <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
   <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-  <a href="index.php" class="w3-bar-item w3-button"><h2>Insert Data</h2></a>
-  <a href="updateVehicle.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
-  <a href="DeleteVehicle.php" class="w3-bar-item w3-button"><h2>Delete Data</h2></a>
+ <a href="index.php" class="w3-bar-item w3-button"><h2>Insert Data</h2></a>
+  <a href="updateProperty.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
+  <a href="propertyDelete.php" class="w3-bar-item w3-button"><h2>Delete Data</h2></a>
 </div>
 
 <!-- Page Content -->
@@ -60,13 +60,13 @@
       <div class="tab-content">   
           <h1><b><b><div style="color:white;">Delete Property Details</div></b></b></h1>
           
-          <form action="/" method="post">
+          <form action="propertyDelete.php" method="POST">
 
                 <div class="field-wrap">
                       <label>
                             Aadhar Number<span class="req">*</span>
                       </label>
-                  <input type="text"required autocomplete="off"/>
+                  <input type="text"required autocomplete="off" name="adharNumber" />
                 </div>
               
               <button type="submit" class="button button-block" name="submit"/>Delete Details</button>
@@ -86,42 +86,10 @@
 
 </html>
 
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js">  </script>
-    
-  
-<script>
-  $(document).ready(function() 
-  {
-    var max_fields      = 10; //maximum input boxes allowed
-    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-    var add_button      = $(".add_field_button"); //Add button ID
-   
-    var x = 1; //initlal text box count
-  
-  
-   $(add_button).click(function(e)
-   { //on add input button click
-        e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-  
-         //text box increment
-            $(wrapper).append('<div><button class="remove_field" style="background-color:#ff5230;"><b><b> -</b></b></button><div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" 2/4 wheeler ?"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off" placeholder= "Registration Number"/> </div> <div class="field-wrap">         <input type="text"required autocomplete="off" placeholder=" DL Number"/></div><input type="text"required autocomplete="off" placeholder=" Insurance Number"/> <br><br><br></div> </div> '); //add input box
-            x++; 
-    }
-    });
-   
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-       
-    e.preventDefault(); 
-    $(this).parent('div').remove(); 
-    x--;
-    })
-});
-  
-</script>
-
-
-
 <script>
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
