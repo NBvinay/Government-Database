@@ -1,11 +1,82 @@
-<!DOCTYPE html>
+<?php
+   $con = mysqli_connect("localhost", "root", "", "govtdb");
+
+  if(mysqli_connect_errno()) 
+  {
+    echo "Failed to connect: " . mysqli_connect_errno();
+  }
+
+  if(isset($_SESSION['userLoggedIn'])) 
+  {
+    $userLoggedIn = $_SESSION['userLoggedIn'];
+  }
+  else
+  {
+    // route back user to the registration page
+    // header("Location: register.php");
+  }
+
+  if(isset($_POST['submit1']))
+  {
+      $adharNumber = $_POST['adharNumber'];
+      $regNo = $_POST['regNo'];
+	  $insNo = $_POST['insNo'];
+	  
+       
+        
+        if (!( $insNo== NULL || $adharNumber==NULL))
+        {
+         
+          // Nigga Change acc to db
+		  mysqli_query($con , "UPDATE `vehicle_details` SET `Insurance Number` = '$insNo' WHERE `Aadhar Number`= '$adharNumber' ;");
+          $flag = 0;
+          
+        }
+        
+        
+      
+      if($flag == 1)
+      {
+        echo "Please enter all the details correctly";
+      }
+      $flag = 1;
+
+    
+  }
+  
+    if(isset($_POST['submit2']))
+  {
+      $newadharNumber = $_POST['newadharNumber'];
+      $regNo = $_POST['regNo'];
+       
+        
+        if (!( $regNo== NULL || $newadharNumber==NULL))
+        {
+         
+          // Nigga Change acc to db
+		  mysqli_query($con , "UPDATE `vehicle_details` SET `Aadhar Number` = '$newadharNumber' WHERE `Registration Number`= '$regNo' ;");
+          $flag = 0;
+          
+        }
+        
+        
+      
+      if($flag == 1)
+      {
+        echo "Please enter all the details correctly";
+      }
+      $flag = 1;
+
+    
+  }
+?><!DOCTYPE html>
 <html>
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <title>Insert Vehicle Details </title>
+  <title>Update Vehicle Details </title>
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -32,6 +103,8 @@
       
       <div class="tab-content">   
           <h1><b><b><div style="color:white;">Update Vehicle Details</div></b></b></h1>
+		  
+		  
           
           <form action="/" method="post">
 
@@ -39,52 +112,37 @@
                       <label>
                             Aadhar Number<span class="req">*</span>
                       </label>
-                  <input type="text"required autocomplete="off"/>
+                  <input type="text"required autocomplete="off" name="adharNumber"/>
                 </div>
-
-
-
-                <button class="add_field_button" style="border-radius: 35%;background-color: #35e8b7; height: 35px "><b><b> +</b></b></button>
-                
-
-                <div class="input_fields_wrap">    
-                   <div>
-
-                         <div class="field-wrap">
-                              <label>
-                                     2/4 wheeler ?<span class="req">*</span>
-                              </label>
-                              <input type="text"required autocomplete="off"/>
-                        </div>
-                        
-                              
-
-                                  
-                        <div class="field-wrap">
-                              <label>
-                                   Registration Number<span class="req">*</span>
-                              </label>
-                              <input type="text"required autocomplete="off"/>
-                        </div>
+				<div class="field-wrap">
+                        <label>
+                             Registration No.<span class="req">*</span>
+                         </label>
+                    <input type="text"required autocomplete="off" name="regNo"/>
+                </div>
                       
-                      <div class="field-wrap">
-                                  <label>
-                                         DL Number<span class="req">*</span>
-                                  </label>
-                              <input type="text"required autocomplete="off"/>
-                        </div>
-                      <div class="field-wrap">
+                  <h1><b><b><div style="color:white;">Update Insurance </div></b></b></h1>
+                 <div class="field-wrap">
                                 <label>
-                                       Insurance Number<span class="req">*</span>
+                                       New Insurance Number<span class="req">*</span>
                                 </label>
-                            <input type="text"required autocomplete="off"/>
+                            <input type="text"required autocomplete="off"/ name="insNo">
 
 
                       </div>
                     
-                    </div>
+                   
+              <button type="submit" class="button button-block" name="submit1" id="submit1"/>Update Details</button>
+			  </br><h1>OR</h1>
+			  
+			  <h1><b><b><div style="color:white;">Update Ownership </div></b></b></h1>
+			 <div class="field-wrap">
+                      <label>
+                            New Owner Aadhar Number<span class="req">*</span>
+                      </label>
+                  <input type="text"required autocomplete="off" name="newadharNumber"/>
                 </div>
-              <button type="submit" class="button button-block"/>Update Details</button>
+				<button type="submit" class="button button-block" name="submit2" id="submit2"/>Update Owner</button>
           </form>
         </div>
       </div>  
