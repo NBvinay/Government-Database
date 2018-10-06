@@ -138,40 +138,6 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js">  </script>
     
-  
-<script>
-  $(document).ready(function() 
-  {
-    var max_fields      = 10; //maximum input boxes allowed
-    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-    var add_button      = $(".add_field_button"); //Add button ID
-   
-    var x = 1; //initlal text box count
-  
-  
-   $(add_button).click(function(e)
-   { //on add input button click
-        e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-  
-         //text box increment
-            $(wrapper).append('<div><button class="remove_field" style="background-color:#ff5230;"><b><b> -</b></b></button><div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" 2/4 wheeler ?"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off" placeholder= "Registration Number"/> </div> <div class="field-wrap">         <input type="text"required autocomplete="off" placeholder=" DL Number"/></div><input type="text"required autocomplete="off" placeholder=" Insurance Number"/> <br><br><br></div> </div> '); //add input box
-            x++; 
-    }
-    });
-   
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-       
-    e.preventDefault(); 
-    $(this).parent('div').remove(); 
-    x--;
-    })
-});
-  
-</script>
-
-
-
 <script>
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
