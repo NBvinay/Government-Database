@@ -1,21 +1,18 @@
 <?php
    $con = mysqli_connect("localhost", "root", "", "govtdb");
-
   if(mysqli_connect_errno()) 
   {
     echo "Failed to connect: " . mysqli_connect_errno();
   }
-
-  if(isset($_SESSION['userLoggedIn'])) 
-  {
-    $userLoggedIn = $_SESSION['userLoggedIn'];
-  }
-  else
-  {
-    // route back user to the registration page
-    // header("Location: register.php");
-  }
-
+  // if(isset($_SESSION['userLoggedIn'])) 
+  // {
+  //   $userLoggedIn = $_SESSION['userLoggedIn'];
+  // }
+  // else
+  // {
+  //   // route back user to the registration page
+  //   // header("Location: register.php");
+  // }
   if(isset($_POST['submit']))
   {
       $adharNumber = $_POST['adharNumber'];
@@ -24,15 +21,15 @@
 	  
        
         
-        if (!( $insNo== NULL || $adharNumber==NULL))
+        if (!( $insNo== NULL || $adharNumber==NULL || $regNo==NULL))
         {
          
           // Nigga Change acc to db
-		  mysqli_query($con , "UPDATE `vehicle_details` SET `Insurance Number` = '$insNo' WHERE `Aadhar Number`= '$adharNumber' ;");
+		  mysqli_query($con , "UPDATE `vehicle_details` SET `Insurance Number` = '$insNo' WHERE `Aadhar Number`= '$adharNumber' AND `Registration Number`= '$regNo';");
           $flag = 0;
           
         }
-        
+          
         
       
       if($flag == 1)
@@ -40,14 +37,15 @@
         echo "Please enter all the details correctly";
       }
       $flag = 1;
-
     
   }
-  
-  
-?><!DOCTYPE html>
+?>
+
+
+
+<!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>Update Vehicle Details  </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
@@ -62,7 +60,7 @@
 <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
   <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
   <a href="index.php" class="w3-bar-item w3-button"><h2>Insert Data</h2></a>
-  <a href="UpdateVehicle.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
+  <a href="updateVehicle.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
   <a href="DeleteVehicle.php" class="w3-bar-item w3-button"><h2>Delete Data</h2></a>
 </div>
 
@@ -78,38 +76,49 @@
       
       
       <div class="tab-content">   
-          <h1><b><b><div style="color:white;">Update Vehicle Insurance</div></b></b></h1>
-		  
-		  
+          <h1><b><b><div style="color:white;">Update Vehicle Details</div></b></b></h1>
           
-          <form action="/" method="post">
+          <form action="updateVehicle.php" method="post">
 
                 <div class="field-wrap">
                       <label>
                             Aadhar Number<span class="req">*</span>
                       </label>
-                  <input type="text"required autocomplete="off" name="adharNumber"/>
+                  <input type="text"required autocomplete="off" name="adharNumber" />
                 </div>
-				<div class="field-wrap">
-                        <label>
-                             Registration No.<span class="req">*</span>
-                         </label>
-                    <input type="text"required autocomplete="off" name="regNo"/>
-                </div>
+
+
+
+                <!-- <button class="add_field_button" style="border-radius: 35%;background-color: #35e8b7; height: 35px "><b><b> +</b></b></button> -->
+                
+
+                <div class="input_fields_wrap">    
+                   <div>
+
+                         
+                              
+
+                                  
+                        <div class="field-wrap">
+                              <label>
+                                   Registration Number<span class="req">*</span>
+                              </label>
+                              <input type="text"required autocomplete="off" name="regNo" />
+                        </div>
                       
-                  
-                 <div class="field-wrap">
+                     
+                      <div class="field-wrap">
                                 <label>
-                                       New Insurance Number<span class="req">*</span>
+                                       Insurance Number<span class="req">*</span>
                                 </label>
-                            <input type="text"required autocomplete="off"/ name="insNo">
+                            <input type="text"required autocomplete="off" name="insNo" />
 
 
                       </div>
                     
-                   
-              <button type="submit" class="button button-block" name="submit1" id="submit1"/>Update Insurance</button>
-			 
+                    </div>
+                </div>
+              <button type="submit" class="button button-block" name="submit" />Update Details</button>
           </form>
         </div>
       </div>  
