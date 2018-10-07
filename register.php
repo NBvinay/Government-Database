@@ -8,8 +8,10 @@
 	include("includes/handlers/register-handler.php");
 	include("includes/handlers/login-handler.php");
 
-	function getInputValue($name) {
-		if(isset($_POST[$name])) {
+	function getInputValue($name)
+	 {
+		if(isset($_POST[$name])) 
+		{
 			echo $_POST[$name];
 		}
 	}
@@ -34,11 +36,15 @@
        </ul>
 
         <div class="tab-content">
+
+        	<!-- LOGIN FORM -->
+
       		<div id="login"> 
 	      		<h1>Login to your account</h1>	
 				<form id="loginForm" action="register.php" method="POST" >
 					
 					<?php echo $account->getError(Constants::$loginFailed); ?><br>
+					
 					<div class="field-wrap">
 						<label for="loginUsername">Username<span class="req">*</span></label>
                    	
@@ -48,63 +54,120 @@
 						<label for="loginPassword">Password<span class="req">*</span></label>
 						<input id="loginPassword" name="loginPassword" type="password" placeholder="                                        Your password" required autocomplete="off">
 					</div>
-						<button type="submit" name="loginButton"  class="button button-block">LOG IN</button>
+						<button type="submit" name="loginButton"  class="button button-block" style="cursor: pointer ">LOG IN</button>
 					
 					
 				</form>
 		   </div>
 		
-			<!-- register Form start -->
+			<!-- REGISTER Form start -->
 
 			<div id="signup">   
             <h1>Create your free account</h1>
 					<form id="registerForm" action="register.php" method="POST">
 						
 						 
+						<div class="field-wrap">	 
+							<?php echo $account->getError(Constants::$adharNumberWrong); ?>
+							<?php echo $account->getError(Constants::$adharTaken); ?> 
+							<label for="adhNo"></label>
+							<input id="adhNo" name="adhNo" type="text"  value="<?php getInputValue('adhNo') ?>" placeholder="Adhar Number           e.g. 1234567890" required>
+						</div>	
+
+
+						<!-- userName (FULL NAME) -->
 						 <div class="field-wrap">	 
 							<?php echo $account->getError(Constants::$usernameCharacters); ?>
 							<?php echo $account->getError(Constants::$usernameTaken); ?> 
-							<label for="username">Username<span class="req">*</span></label>
-							<input id="username" name="username" type="text"  value="<?php getInputValue('username') ?>" placeholder="                                        e.g. Vinay" required>
+							<label for="username"></label>
+							<input id="username" name="username" type="text"  value="<?php getInputValue('username') ?>" placeholder="Full name  e.g. Vinay" required>
 						</div>
+
+						<!-- Fathers name and Mothers Name -->
 						<div class="top-row">
 								<div class="field-wrap">
-									<?php echo $account->getError(Constants::$firstNameCharacters); ?> 
-									<label for="firstName">First name<span class="req">*</span></label>
-									<input id="firstName" name="firstName" type="text"  value="<?php getInputValue('firstName') ?>"  required placeholder="                     e.g. Vinay">
+									<?php echo $account->getError(Constants::$fatherNameCharacters); ?> 
+									<label for="fatherName"></label>
+									<input id="fatherName" name="fatherName" type="text"  value="<?php getInputValue('fatherName') ?>"  required placeholder="Father's Name">
 								</div>
 
 								<div class="field-wrap">
-									<?php echo $account->getError(Constants::$lastNameCharacters); ?>
-									<label for="lastName">Last name<span class="req">*</span></label>
-									<input id="lastName" name="lastName" type="text"  value="<?php getInputValue('lastName') ?>" required  placeholder="                     e.g. NB">
+									<?php echo $account->getError(Constants::$motherNameCharacters); ?>
+									<label for="motherName"></label>
+									<input id="motherName" name="motherName" type="text"  value="<?php getInputValue('motherName') ?>" required  placeholder="Mother's Name">
 								</div>
 						</div>
+
+						<!-- DOB -->
+
+						<div class="field-wrap">
+							<label for="dob" style=""></label>
+							<input id="dob" name="dob" type="Date" placeholder="Date Of birth (yyyy-mm-dd)" value="<?php getInputValue('dob') ?>" required>
+						</div>
+
+						<!-- Gender -->
+
+						<div class="field-wrap">
+							<label for="gender" style=""></label>
+							<input id="gender" name="gender" type="text" placeholder="Gender(enter as m/f/o)" value="<?php getInputValue('gender') ?>" required>
+						</div>
+
+						<!-- Email ID -->
 
 						<div class="field-wrap">
 							<?php echo $account->getError(Constants::$emailsDoNotMatch); ?>
 							<?php echo $account->getError(Constants::$emailInvalid); ?>
 							<?php echo $account->getError(Constants::$emailTaken); ?>
-							<label for="email">Email<span class="req">*</span></label>
-							<input id="email" name="email" type="email" placeholder="                                        e.g. Vinay@gmail.com" value="<?php getInputValue('email') ?>" required>
+							<label for="email"></label>
+							<input id="email" name="email" type="email" placeholder="Email ID  e.g. Vinay@gmail.com" value="<?php getInputValue('email') ?>" required>
 						</div>
+
+						<!-- Confirm Email ID -->
+
 						<div class="field-wrap">
-							<label for="email2" style="">Confirm email<span class="req">*</span></label>
-							<input id="email2" name="email2" type="email" placeholder="                                        e.g. Vinay@gmail.com" value="<?php getInputValue('email2') ?>" required>
+							<label for="email2" style=""></label>
+							<input id="email2" name="email2" type="email" placeholder="Confirm Email ID e.g. Vinay@gmail.com" value="<?php getInputValue('email2') ?>" required>
 						</div>
+
+						<!-- Address -->
+
+						<div class="field-wrap">
+							<label for="address" style=""></label>
+							<input id="address" name="address" type="text" placeholder="Present Address" value="<?php getInputValue('address') ?>" required> 
+						</div>
+
+						<!-- Qualification -->
+
+						<div class="field-wrap">
+							<label for="qualification" style=""></label>
+							<input id="qualification" name="qualification" type="text" placeholder="Qualification" value="<?php getInputValue('qualification') ?>" required>
+						</div>
+
+						<!-- Password -->
+
 						<div class="field-wrap">
 							<?php echo $account->getError(Constants::$passwordsDoNoMatch); ?>
 							<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
 							<?php echo $account->getError(Constants::$passwordCharacters); ?>
-							<label for="password">Password<span class="req">*</span></label>
-							<input id="password" name="password" type="password" placeholder="                                        Your password" required>
+							<label for="password"></label>
+							<input id="password" name="password" type="password" placeholder="Your password" required>
 						</div>
+
+						<!-- Confirm Password -->
+
 						<div class="field-wrap">
-							<label for="password2">Confirm password<span class="req">*</span></label>
-							<input id="password2" name="password2" type="password" placeholder="                                        Your password" required>
+							<label for="password2"></label>
+							<input id="password2" name="password2" type="password" placeholder="Confirm password" required>
 						
 						</div>
-						<button type="submit" name="registerButton"  class="button button-block">SIGN UP(REGISTER)</button>
+
+
+						<!-- SUBMIT BOTTON -->
+						<button type="submit" name="registerButton" class="button button-block" style="cursor: pointer">SIGN UP(REGISTER)</button>
+
+
+						
+						
 						
 					</form>
 				</div>
