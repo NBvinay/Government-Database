@@ -1,6 +1,6 @@
 <?php
    $con = mysqli_connect("localhost", "root", "", "govtdb");
-
+ 
   if(mysqli_connect_errno()) 
   {
     echo "Failed to connect: " . mysqli_connect_errno();
@@ -16,37 +16,52 @@
     // header("Location: register.php");
   }
 
+
+
+
+
   if(isset($_POST['submit']))
   {
-      $adharNumber = $_POST['adharNumber'];
-      $katha = $_POST['ppt_katha'];
-      $regNo = $_POST['ppt_regNo'];
-      $area = $_POST['ppt_area'];
-      $postalAddress = $_POST['ppt_postalAddress'];
       
+      $adharNumber = $_POST['adharNumber'];
+      $companyName = $_POST['companyName'];
+      $job = $_POST['job'];
+      $salary = $_POST['salary'];
+      $doj = $_POST['doj'];
+      $status = $_POST['status'];
+      $dor = $_POST['dor'];
       $flag = 1;
-
-      foreach ($katha as $key => $value) 
-      { 
-        // $count = $count +1;
-        if (!($katha[$key]== NULL || $area[$key]== NULL || $postalAddress[$key]== NULL || $adharNumber==NULL  || $regNo[$key]==NULL))
+      $doj1 = date("Y-m-d",strtotime($doj));
+      $dor1 = date("Y-m-d",strtotime($dor));
+      
+         
+ 
+        
+        if (!($companyName== NULL || $job== NULL || $salary== NULL || $doj== NULL ||$status== NULL ||$dor== NULL || $adharNumber==NULL))
         {
+         
+           echo $adharNumber,$companyName,$job,$salary, $doj, $status, $dor,"<br>";    
 
-		  mysqli_query($con , "INSERT INTO `property_details` (`Aadhar Number`, `ppt_regNo`, `Katha`, `City`, `Postal Address`) VALUES ('$adharNumber',    '$regNo[$key]', '$katha[$key]', '$area[$key]', '$postalAddress[$key]');");
+		      $res=mysqli_query($con,"INSERT INTO `employment details` (`Aadhar Number`,`Company Name`,`Job`,`Salary`,`Date_of_joining`,`Status`,`Date of resignation/retirement`) VALUES ('$adharNumber', '$companyName','$job', '$salary', '$doj1', '$status', '$dor1');");
           $flag = 0;
+          
+        }
+
+        if(!$res)
+        {
+          echo "failed to insert";
         }
         
-        
-      }
+      
       if($flag == 1)
       {
         echo "Please enter all the vehicle details correctly";
       }
       $flag = 1;
+
+    
   }
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <title>W3.CSS</title>
@@ -54,7 +69,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <title>Insert Property Details </title>
+  <title>Insert Employment Details </title>
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -64,8 +79,8 @@
 <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
   <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
   <a href="index.php" class="w3-bar-item w3-button"><h2>Insert Data</h2></a>
-  <a href="updateProperty.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
-  <a href="DeleteProperty.php" class="w3-bar-item w3-button"><h2>Delete Data</h2></a>
+  <a href="updateEmployee.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
+  <a href="DeleteEmployee.php" class="w3-bar-item w3-button"><h2>Delete Data</h2></a>
 </div>
 
 <!-- Page Content -->
@@ -79,7 +94,7 @@
       
       
       <div class="tab-content">   
-          <h1><b><b><div style="color:white;">Insert Property Details</div></b></b></h1>
+          <h1><b><b><div style="color:white;">Insert Employment Details</div></b></b></h1>
           
           <form action="index.php" method="POST">
 
@@ -87,48 +102,62 @@
                       <label>
                             Aadhar Number<span class="req">*</span>
                       </label>
-                  <input type="text"required autocomplete="off" name="adharNumber" />
+                  <input type="text"required autocomplete="off" name="adharNumber"/>
+                </div>
+				
+				
+				
+				        <div class="field-wrap">
+                        <label>
+                              Company Name<span class="req">*</span>
+                        </label>
+                        <input type="text"required autocomplete="off" name="companyName"/>
                 </div>
 
                 <div class="input_fields_wrap">    
                    <div>
-     
-				<button class="add_field_button" style="border-radius: 35%;background-color: #35e8b7; height: 35px "><b><b> +</b></b></button>
+
+                         <div class="field-wrap">
+                              <label>
+                                     Job<span class="req">*</span>
+                              </label>
+                              <input type="text"required autocomplete="off" name="job"/>
+                        </div>
+                        
+                              
+
                                   
                         <div class="field-wrap">
                               <label>
-                                   Katha<span class="req">*</span>
+                                   Salary<span class="req">*</span>
                               </label>
-                              <input type="text"required autocomplete="off" id="katha[]" name="ppt_katha[]" />
-                        </div>
-
-                        <div class="field-wrap">
-                                  <label>
-                                         Registration Number<span class="req">*</span>
-                                  </label>
-                              <input type="text"required autocomplete="off"  name="ppt_regNo[]" />
+                              <input type="Number"required autocomplete="off" name="salary"/>
                         </div>
                       
-                      <div class="field-wrap">
-                                  <label>
-                                         Area<span class="req">*</span>
-                                  </label>
-                              <input type="text"required autocomplete="off"  name="ppt_area[]" />
+                      
+                        <div class="field-wrap">
+                                  
+                                        <div style="color: white"> Date of Joining:</div>
+                                  
+                              <input type="Date" required autocomplete="off" name="doj"/>
+
+
                         </div>
-
-                      <div class="field-wrap">
+  					  
+  					            <div class="field-wrap">
                                 <label>
-                                       Postal Address<span class="req">*</span>
+                                     Status<span class="req">*</span>
                                 </label>
-                            <input type="text"required autocomplete="off" name="ppt_postalAddress[]" />
-
-                      </div>
-                    
+                                <input type="text"required autocomplete="off" name="status"/>
+                          </div>
+                      
+  					             <div class="field-wrap">
+                                <div style="color: white"> Date of Retirement:</div>
+                                <input type="date"required autocomplete="off" name="dor"/>
+                          </div>
                     </div>
                 </div>
-      
-                <button type="submit" class="button button-block" id="submit" name="submit"/>Submit Details</button>
-
+                <button type="submit" class="button button-block" name="submit" />Submit Details</button>
           </form>
 
         </div>
@@ -137,8 +166,8 @@
 
 </script>
         
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script  src="js/index.js"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="js/index.js"></script>
 
 
 
@@ -149,44 +178,6 @@
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js">  </script>
     
-
-
-
-  
-<script>
-  $(document).ready(function() 
-  {
-    var max_fields      = 10; //maximum input boxes allowed
-    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-    var add_button      = $(".add_field_button"); //Add button ID
-   
-    var x = 1; //initlal text box count
-  
-  
-   $(add_button).click(function(e)
-   { //on add input button click
-        e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-  
-         //text box increment
-            $(wrapper).append('<div><button class="remove_field" style="background-color:#ff5230;"><b><b> -</b></b></button><div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Katha" name="katha[]"/> </div> <div class="field-wrap">  <label> Registration Number<span class="req">*</span>  </label>  <input type="text"required autocomplete="off"  name="ppt_regNo[]" />  </div><div class="field-wrap"><input type="text"required autocomplete="off" placeholder= "Area" name="ppt_area[]"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Postal Address" name="postalAddress[]"/></div> <br><br><br></div> </div> '); //add input box
-            x++; 
-    }
-    });
-   
-    $(wrapper).on("click",".remove_field", function(e)
-    { //user click on remove text
-       
-    e.preventDefault(); 
-    $(this).parent('div').remove(); 
-    x--;
-    })
-});
-  
-</script>
-
-
-
 <script>
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
