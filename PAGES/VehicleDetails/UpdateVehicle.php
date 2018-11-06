@@ -1,18 +1,16 @@
 <?php
+
+include("../../includes/config.php");
+   
+  $_SESSION['adminLoggedIn'] = 'property';
+
+
    $con = mysqli_connect("localhost", "root", "", "govtdb");
   if(mysqli_connect_errno()) 
   {
     echo "Failed to connect: " . mysqli_connect_errno();
   }
-  // if(isset($_SESSION['userLoggedIn'])) 
-  // {
-  //   $userLoggedIn = $_SESSION['userLoggedIn'];
-  // }
-  // else
-  // {
-  //   // route back user to the registration page
-  //   // header("Location: register.php");
-  // }
+ 
   if(isset($_POST['submit']))
   {
       $adharNumber = $_POST['adharNumber'];
@@ -62,6 +60,7 @@
   <a href="index.php" class="w3-bar-item w3-button"><h2>Insert Data</h2></a>
   <a href="updateVehicle.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
   <a href="DeleteVehicle.php" class="w3-bar-item w3-button"><h2>Delete Data</h2></a>
+  <a href="/DigiLibrary/adminLogin.php" class="w3-bar-item w3-button"><h2>Log Out</h2></a>
 </div>
 
 <!-- Page Content -->
