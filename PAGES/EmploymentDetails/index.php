@@ -1,5 +1,20 @@
 <?php
-   $con = mysqli_connect("localhost", "root", "", "govtdb");
+
+   include("../../includes/config.php");
+  
+    session_destroy(); 
+
+    if(isset($_SESSION['adminLoggedIn'])) 
+    {
+
+      $userLoggedIn = $_SESSION['adminLoggedIn'];
+      // echo $userLoggedIn;
+    }
+    else
+    {
+      // route back user to the registration page
+      header("Location:/DigiLibrary/adminLogin.php");
+    }
  
   if(mysqli_connect_errno()) 
   {
@@ -81,6 +96,7 @@
   <a href="index.php" class="w3-bar-item w3-button"><h2>Insert Data</h2></a>
   <a href="updateEmployee.php" class="w3-bar-item w3-button"><h2>Update Data</h2></a>
   <a href="DeleteEmployee.php" class="w3-bar-item w3-button"><h2>Delete Data</h2></a>
+    <a href="/DigiLibrary/adminLogin.php" class="w3-bar-item w3-button"><h2>Log Out</h2></a>
 </div>
 
 <!-- Page Content -->

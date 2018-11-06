@@ -164,7 +164,7 @@ textarea {
   border-radius: 0;
   padding: 15px 0;
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
   background: #00BFFF;
@@ -184,11 +184,7 @@ textarea {
   ;
 }
 
-
-
 .forgot {
   margin-top: -20px;
   text-align: right;
 }
-
-
