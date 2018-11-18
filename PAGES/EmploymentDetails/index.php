@@ -2,7 +2,7 @@
 
    include("../../includes/config.php");
   
-    session_destroy(); 
+    // session_destroy(); 
 
     if(isset($_SESSION['adminLoggedIn'])) 
     {
@@ -57,8 +57,10 @@
          
           
 
-		      $res=mysqli_query($con,"INSERT INTO `employment details` (`Aadhar Number`,`Company Name`,`Job`,`Salary`,`Date_of_joining`,`Status`,`Date of resignation/retirement`) VALUES ('$adharNumber', '$companyName','$job', '$salary', '$doj1', '$status', '$dor1');");
+		      $res=mysqli_query($con,"INSERT INTO `employment details` (`Aadhar Number`,`Company Name`,`Job`,`Salary`,`Date_of_joining`,`Status`,`Date of resignation/retirement`,`IncomeTax`) VALUES ('$adharNumber', '$companyName','$job', '$salary', '$doj1', '$status', '$dor1',0);");
           $flag = 0;
+          mysqli_query($con,"CALL IncTax('$adharNumber','$salary');");
+          
           
         }
 
@@ -74,8 +76,12 @@
       }
       $flag = 1;
 
+      
+
+
     
   }
+
 ?>
 <!DOCTYPE html>
 <html>

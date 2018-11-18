@@ -21,6 +21,7 @@
 <head>
 	<title>Welcome to digiLocker!</title>
 	<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel="stylesheet" href="css/style-login.css"> 
 
@@ -28,6 +29,7 @@
 <body>
 
 
+<div><a href="http://localhost/DigiLibrary/adminLogin.php" style="background-color: green;"><p><button class="w3-button w3-teal" style="margin-left: 90%">Admin Login</button></p> </a></div>
 	<div id="inputContainer" class="form">
 
 		<ul class="tab-group">
@@ -101,11 +103,13 @@
 						<!-- DOB -->
 
 						<div class="field-wrap">
+							<div style="color: grey;font-size: 20px">Date of Birth</div>
 							<label for="dob" style=""></label>
 							<input id="dob" name="dob" type="Date" placeholder="Date Of birth (yyyy-mm-dd)" value="<?php getInputValue('dob') ?>" required>
 						</div>
 
 						<!-- Gender -->
+						<br>
 
 						<div class="field-wrap">
 							<label for="gender" style=""></label>

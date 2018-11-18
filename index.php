@@ -3,7 +3,8 @@ include("includes/config.php");
 
 // session_destroy(); 
 
-if(isset($_SESSION['userLoggedIn'])) {
+if(isset($_SESSION['userLoggedIn'])) 
+{
 	$userLoggedIn = $_SESSION['userLoggedIn'];
 }
 else
@@ -29,7 +30,8 @@ else
 <body class="extinguisher-transition">
 <main class="cd-main-content">
 	<div class="center">
-		<h1>DigiLocker</h1>
+		<h1 style="font-size: 125px">DigiLocker</h1>
+		<h2 style="font-size: 30px;background-color: ;margin-left: ">A project by <br>Vinay and Yaser<br><br></h2>
 		<a href="#modal-1" class="cd-btn cd-modal-trigger">About</a> <p><br>
 		<a href="http://localhost/DigiLibrary/register.php" class="cd-btn ">Get Started</a>
 	</div>

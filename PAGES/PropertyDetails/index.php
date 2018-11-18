@@ -1,7 +1,7 @@
 <?php
     include("../../includes/config.php");
   
-    session_destroy(); 
+    // session_destroy(); 
 
     if(isset($_SESSION['adminLoggedIn'])) 
     {
@@ -27,19 +27,39 @@
         $katha = $_POST['ppt_katha'];
         $regNo = $_POST['ppt_regNo'];
         $area = $_POST['ppt_area'];
+        $amount = $_POST['amount'];
         $postalAddress = $_POST['ppt_postalAddress'];
         
         $flag = 1;
-
+        
         foreach ($katha as $key => $value) 
         { 
+        	
           // $count = $count +1;
-          if (!($katha[$key]== NULL || $area[$key]== NULL || $postalAddress[$key]== NULL || $regNo[$key]==NULL))
+          if (!($katha[$key]== NULL ||  $area[$key]== NULL || $postalAddress[$key]== NULL || $regNo[$key]==NULL  ||  $amount[$key]== NULL)) 
           {
+            $test = 10;
+          
+  		      mysqli_query($con , "INSERT INTO `property_details`(`Aadhar Number`, `ppt_regNo`, `Katha`, `Area`, `Postal Address`, `Amount`,`PropertyTax`) VALUES ('$adharNumber','$regNo[$key]', '$katha[$key]', '$area[$key]', '$postalAddress[$key]','$amount[$key]',0);");
+            $tax_val_ref = mysqli_query($con , "SELECT `Value%` from tax_ref where Area='$area[$key]' ");
 
-  		  mysqli_query($con , "INSERT INTO `property_details` (`Aadhar Number`, `ppt_regNo`, `Katha`, `City`, `Postal Address`) VALUES ('$adharNumber','$regNo[$key]', '$katha[$key]', '$area[$key]', '$postalAddress[$key]');");
+            $row=mysqli_fetch_row($tax_val_ref);
+            if(!$row)
+            {
+              ?>
+                <script >alert("enter proper area");</script>
+              <?php
+            }
+            
+            // echo "$row[0]";
+            mysqli_query($con,"CALL PropTax('$adharNumber','$katha[$key]','$amount[$key]','$row[0]');");
             $flag = 0;
+
+
+
           }
+
+          
           
           
         }
@@ -49,6 +69,8 @@
         }
         $flag = 1;
     }
+
+    
 ?>
 
 
@@ -131,6 +153,7 @@
                       
                       <div class="field-wrap">
                                   <label>
+
                                          Area<span class="req">*</span>
                                   </label>
                               <input type="text"required autocomplete="off"  name="ppt_area[]" />
@@ -141,6 +164,14 @@
                                        Postal Address<span class="req">*</span>
                                 </label>
                             <input type="text"required autocomplete="off" name="ppt_postalAddress[]" />
+
+                      </div>
+
+                      <div class="field-wrap">
+                                <label>
+                                       Property Value<span class="req">*</span>
+                                </label>
+                            <input type="text"required autocomplete="off" name="amount[]" />
 
                       </div>
                     
@@ -189,7 +220,7 @@
         if(x < max_fields){ //max input box allowed
   
          //text box increment
-            $(wrapper).append('<div><button class="remove_field" style="background-color:#ff5230;"><b><b> -</b></b></button><div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Katha" name="ppt_katha[]"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off"  name="ppt_regNo[]" placeholder="Registration Number" />  </div><div class="field-wrap"><input type="text"required autocomplete="off" placeholder= "Area" name="ppt_area[]"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Postal Address" name="ppt_postalAddress[]"/></div> <br><br><br></div> </div> '); //add input box
+            $(wrapper).append('<div><button class="remove_field" style="background-color:#ff5230;"><b><b> -</b></b></button><div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Katha" name="ppt_katha[]"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off"  name="ppt_regNo[]" placeholder="Registration Number" />  </div><div class="field-wrap"><input type="text"required autocomplete="off" placeholder= "Area" name="ppt_area[]"/> </div> <div class="field-wrap"><input type="text"required autocomplete="off" placeholder=" Postal Address" name="ppt_postalAddress[]"/></div><div class="field-wrap"><label>Property Value<span class="req">*</span></label><input type="Number"required autocomplete="off" name="amount[]" /></div> <br><br><br></div> </div> '); //add input box
             x++; 
     }
     });
