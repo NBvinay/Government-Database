@@ -68,7 +68,7 @@
             <h1>Create your free account</h1>
 					<form id="registerForm" action="register.php" method="POST">
 						
-						 
+						 <!-- ADHAR NUMBER -->
 						<div class="field-wrap">	 
 							<?php echo $account->getError(Constants::$adharNumberWrong); ?>
 							<?php echo $account->getError(Constants::$adharTaken); ?> 
@@ -84,7 +84,6 @@
 							<label for="username"></label>
 							<input id="username" name="username" type="text"  value="<?php getInputValue('username') ?>" placeholder="Full name  e.g. Vinay" required>
 						</div>
-
 						<!-- Fathers name and Mothers Name -->
 						<div class="top-row">
 								<div class="field-wrap">
@@ -99,11 +98,9 @@
 									<input id="motherName" name="motherName" type="text"  value="<?php getInputValue('motherName') ?>" required  placeholder="Mother's Name">
 								</div>
 						</div>
-
 						<!-- DOB -->
-
 						<div class="field-wrap">
-							<div style="color: grey;font-size: 20px">Date of Birth</div>
+							<div style="color: #dbdbdb;font-size: 20px">Date of Birth</div>
 							<label for="dob" style=""></label>
 							<input id="dob" name="dob" type="Date" placeholder="Date Of birth (yyyy-mm-dd)" value="<?php getInputValue('dob') ?>" required>
 						</div>
@@ -117,7 +114,6 @@
 						</div>
 
 						<!-- Email ID -->
-
 						<div class="field-wrap">
 							<?php echo $account->getError(Constants::$emailsDoNotMatch); ?>
 							<?php echo $account->getError(Constants::$emailInvalid); ?>
@@ -127,28 +123,24 @@
 						</div>
 
 						<!-- Confirm Email ID -->
-
 						<div class="field-wrap">
 							<label for="email2" style=""></label>
 							<input id="email2" name="email2" type="email" placeholder="Confirm Email ID e.g. Vinay@gmail.com" value="<?php getInputValue('email2') ?>" required>
 						</div>
 
 						<!-- Address -->
-
 						<div class="field-wrap">
 							<label for="address" style=""></label>
 							<input id="address" name="address" type="text" placeholder="Present Address" value="<?php getInputValue('address') ?>" required> 
 						</div>
 
 						<!-- Qualification -->
-
 						<div class="field-wrap">
 							<label for="qualification" style=""></label>
 							<input id="qualification" name="qualification" type="text" placeholder="Qualification" value="<?php getInputValue('qualification') ?>" required>
 						</div>
 
 						<!-- Password -->
-
 						<div class="field-wrap">
 							<?php echo $account->getError(Constants::$passwordsDoNoMatch); ?>
 							<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
@@ -158,7 +150,6 @@
 						</div>
 
 						<!-- Confirm Password -->
-
 						<div class="field-wrap">
 							<label for="password2"></label>
 							<input id="password2" name="password2" type="password" placeholder="Confirm password" required>
@@ -168,15 +159,8 @@
 
 						<!-- SUBMIT BOTTON -->
 						<button type="submit" name="registerButton" class="button button-block" style="cursor: pointer">SIGN UP(REGISTER)</button>
-
-
-						
-						
-						
 					</form>
 				</div>
-
-
 		</div>
 	</div>  
 

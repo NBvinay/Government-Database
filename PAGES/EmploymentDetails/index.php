@@ -39,6 +39,7 @@
   {
       
       $adharNumber = $_POST['adharNumber'];
+      $empID = $_POST['empID'];
       $companyName = $_POST['companyName'];
       $job = $_POST['job'];
       $salary = $_POST['salary'];
@@ -57,7 +58,7 @@
          
           
 
-		      $res=mysqli_query($con,"INSERT INTO `employment details` (`Aadhar Number`,`Company Name`,`Job`,`Salary`,`Date_of_joining`,`Status`,`Date of resignation/retirement`,`IncomeTax`) VALUES ('$adharNumber', '$companyName','$job', '$salary', '$doj1', '$status', '$dor1',0);");
+		      $res=mysqli_query($con,"INSERT INTO `employment details`(`Aadhar Number`, `employee_id`, `Company Name`, `Job`, `Salary`, `Date_of_joining`, `Status`, `Date of resignation/retirement`, `IncomeTax`) VALUES ('$adharNumber','$empID', '$companyName','$job', '$salary', '$doj1', '$status', '$dor1',0);");
           $flag = 0;
           mysqli_query($con,"CALL IncTax('$adharNumber','$salary');");
           
@@ -85,7 +86,7 @@
 ?>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>Insert Employment</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
@@ -126,10 +127,18 @@
                       </label>
                   <input type="text"required autocomplete="off" name="adharNumber"/>
                 </div>
+
+
+                <div class="field-wrap">
+                      <label>
+                            Employee ID<span class="req">*</span>
+                      </label>
+                  <input type="text"required autocomplete="off" name="empID"/>
+                </div>
 				
 				
 				
-				        <div class="field-wrap">
+		        <div class="field-wrap">
                         <label>
                               Company Name<span class="req">*</span>
                         </label>

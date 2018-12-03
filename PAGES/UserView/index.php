@@ -1,20 +1,16 @@
 <?php
-include("../../includes/config.php");
-
-
-session_destroy(); 
-
-if(isset($_SESSION['userLoggedIn'])) 
-{
-	$userLoggedIn = $_SESSION['userLoggedIn'];
-	echo $userLoggedIn;
-}
-else
-{
-	// route back user to the registration page
-	header("Location:/DigiLibrary/register.php");
-}
-
+	include("../../includes/config.php");
+	// session_destroy(); 
+	if(isset($_SESSION['userLoggedIn'])) 
+	{
+		$userLoggedIn = $_SESSION['userLoggedIn'];
+		echo "Your Adhar Number: ",$userLoggedIn;
+	}
+	else
+	{
+		// route back user to the registration page
+		header("Location:/DigiLibrary/register.php");
+	}
 ?>
 
 
@@ -34,16 +30,19 @@ else
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>
 	</head>
+
+
 	<body>
 		<div class="container">
+
 			<header class="clearfix">
 				<span>Digi Locker <span class="bp-icon bp-icon-about" data-content="The Blueprints are a collection of basic and minimal website concepts, components, plugins and layouts with minimal style for easy adaption and usage, or simply for inspiration."></span></span>
 				<h1>User View Page</h1>
 				<nav>
-					<a href="/DigiLibrary/index.php" class="bp-icon bp-icon-prev" data-info="LOGOUT"><span>LOGOUT</span></a>
-					
+					<a href="/DigiLibrary/index.php" class="bp-icon bp-icon-prev" data-info="LOGOUT"><span>LOGOUT</span></a>	
 				</nav>
 			</header>	
+
 			<div class="main">
 				<nav class="cbp-hsmenu-wrapper" id="cbp-hsmenu-wrapper">
 					<div class="cbp-hsinner">
@@ -54,14 +53,14 @@ else
 				
 								<?php
 
-									$con = mysqli_connect("localhost", "root", "", "govtdb");
+									// $con = mysqli_connect("localhost", "root", "", "govtdb");
 
 									if(mysqli_connect_errno()) 
 									{
 									echo "Failed to connect: " . mysqli_connect_errno();
 									}
 
-									$sql = "SELECT `Aadhar Number`, `Password`, `Full Name`, `Father's Name`, `Mother's Name`, `DOB`, `Gender`, `Email-id`, `Present Address`, `Qualifications` FROM `personal_info` WHERE `Aadhar Number`='$userLoggedIn';" ;
+									$sql = "SELECT `Aadhar Number`, `Password`, `Full Name`, `Father Name`, `Mother Name`, `DOB`, `Gender`, `Email-id`, `Present Address`, `Qualifications` FROM `personal_info` WHERE `Aadhar Number`='$userLoggedIn';" ;
 
 									$result = mysqli_query($con ,$sql);
 
@@ -146,7 +145,7 @@ else
 										
 									?>
 								
-									  <h3 style="font-size: 20px; position: fixed;color: black;margin-left: 50px">Your property details:</h3>
+									  <h3 style="font-size: 20px; position: fixed;color: black;margin-left: 150px">Your property details:</h3>
 									  <br><br><br><br><br>
 						
 									<?php	
@@ -282,6 +281,88 @@ else
 							<li>
 
 								<a href="#">Tax Details</a>
+
+
+								<ul class="cbp-hssubmenu cbp-hssub-rows">
+								
+									<?php
+										  	$sql1 = "SELECT * FROM `employment details` WHERE  `Aadhar Number`='$userLoggedIn';" ;
+										  	$sql2 = "SELECT * FROM `property_details` WHERE  `Aadhar Number`='$userLoggedIn';" ;
+
+											$result = mysqli_query($con ,$sql1);
+											$result1 = mysqli_query($con ,$sql2);
+											$count = 1;
+											if(mysqli_num_rows($result)>0)
+											{
+											?>
+											  <h3 style="font-size: 20px; position: fixed;color: black;margin-left: 50px;background-color: ">Your  tax details:</h3>
+											  <br><br><br><br><br>
+
+											  <div class="container" style="margin-left:450px;">
+											  <table  style="background-color:;
+											  				 position: relative;
+															 margin-left: 120px;
+														  	 height: 75px;
+															 padding-left:0%;
+															 color:black;
+															 text-align: left;">
+											    <tr>
+											         <th>Income tax :<t></th>
+											         <td style="padding-left: 100px;">
+											         	<?php 
+											         	 $row = mysqli_fetch_row($result); 
+											         	 echo "$row[8]"," ₹" 
+											         	?>
+											         	
+											         </td>
+											    </tr>
+											
+											  </table>
+											</div>
+								
+
+											<?php	
+												while ($row1 = mysqli_fetch_row($result1))
+												 {
+												 	
+													echo "<b><u>Property $count</b></u>";
+												 	$count++;
+											?>
+										         	 <div class="container" style="margin-left:450px;">
+											  <table  style="background-color:;
+											  				 position: relative;
+															 margin-left: 120px;
+														  	 height: 75px;
+															 padding-left:0%;
+															 color:black;
+															 text-align: left;">
+											    <tr>
+											         <th>Property tax :<t></th>
+											         <td style="padding-left: 100px;">
+											         	<?php 
+											         	 $row = mysqli_fetch_row($result); 
+											         	 echo "$row1[6]"," ₹" 
+											         	?>
+											         	
+											         </td>
+											    </tr>
+											
+											  </table>
+											</div>
+											<?php
+
+
+											         
+
+
+												 	
+												}
+											}
+									?>
+
+
+
+								</ul>
 								
 								
 							</li>

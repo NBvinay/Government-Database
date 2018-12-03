@@ -1,9 +1,11 @@
 <?php
     include("../../includes/config.php");
   
-    // session_destroy(); 
+    
+    session_destroy(); 
 
-    if(isset($_SESSION['adminLoggedIn'])) 
+
+    if(isset($_SESSION['adminLoggedIn']) && !isset($_POST['submit'])) 
     {
 
       $userLoggedIn = $_SESSION['adminLoggedIn'];
@@ -23,6 +25,8 @@
   
     if(isset($_POST['submit']))
     {
+
+        $_SESSION['adminLoggedIn'] = $name;
         $adharNumber = $_POST['adharNumber'];
         $katha = $_POST['ppt_katha'];
         $regNo = $_POST['ppt_regNo'];
@@ -76,7 +80,7 @@
 
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>Insert Property</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
@@ -178,7 +182,9 @@
                     </div>
                 </div>
       
-                <button type="submit" class="button button-block" id="submit" name="submit"/>Submit Details</button>
+                <button type="submit" class="button button-block" id="submit" name="submit"/>
+                    Submit Details
+                </button>
 
           </form>
 

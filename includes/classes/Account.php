@@ -16,7 +16,7 @@
 		public function login($un, $pw)
 		{
 
-			// $pw = md5($pw);
+			$pw = md5($pw);
 
 			$query = mysqli_query($this->con, "SELECT * FROM `personal_info` WHERE `Full Name`='$un' AND `Password`='$pw';");
 
@@ -24,7 +24,7 @@
 
 			if(mysqli_num_rows($query) == 1)
 			{
-				echo "login query worked2";
+				
 				return true;
 			}
 			else 
@@ -75,10 +75,11 @@
 		{
 			$encryptedPw = md5($pw);
 			$date = date("Y-m-d",strtotime($dob));
-			echo $an," ",$pw," ",$encryptedPw," ",$un," ",$fn," ",$mn," ",$dob," ",$date," ",$gnd," ",$em," ",$address," ",$qual," ";
+
+			echo $an," ",$pw," ",$encryptedPw," ",$un," ",$fn," ",$mn," ",$dob," ",$date," ",$gnd," ",$em," ",$address," ",$qual,"<br> ";
 			
  		
- 			$result = mysqli_query($this->con, "INSERT INTO `personal_info` (`Aadhar Number`, `Password`, `Full Name`, `Father's Name`, `Mother's Name`, `DOB`, `Gender`, `Email-id`, `Present Address`, `Qualifications`) VALUES ('$an','$encryptedPw','$un','$fn','$mn','$date','$gnd','$em','$address','$qual');");
+ 			$result = mysqli_query($this->con, "INSERT INTO `personal_info` (`Aadhar Number`, `Password`, `Full Name`, `Father Name`, `Mother Name`, `DOB`, `Gender`, `Email-id`, `Present Address`, `Qualifications`) VALUES ('$an','$encryptedPw','$un','$fn','$mn','$date','$gnd','$em','$address','$qual');");
 			
 
 			if(!($result))

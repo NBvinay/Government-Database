@@ -65,8 +65,8 @@ if(isset($_POST['loginButton']))
 					
 					
 					<div class="field-wrap">
-						<label for="loginUsername">Username<span class="req">*</span></label>
-                   		<input id="loginUsername" name="loginUsername" type="text" placeholder="                                        e.g. Vinay" required autocomplete="false" >
+						<label for="loginUsername">Department Name<span class="req">*</span></label>
+                   		<input id="loginUsername" name="loginUsername" type="text" placeholder="                                        e.g. Property" required autocomplete="false" >
 					</div>
 					<div class="field-wrap">
 						<label for="loginPassword">Password<span class="req">*</span></label>

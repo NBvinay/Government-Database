@@ -30,7 +30,7 @@ else
 <body class="extinguisher-transition">
 <main class="cd-main-content">
 	<div class="center">
-		<h1 style="font-size: 125px">DigiLocker</h1>
+		<h1 style="font-size: 125px">DigiLock</h1>
 		<h2 style="font-size: 30px;background-color: ;margin-left: ">A project by <br>Vinay and Yaser<br><br></h2>
 		<a href="#modal-1" class="cd-btn cd-modal-trigger">About</a> <p><br>
 		<a href="http://localhost/DigiLibrary/register.php" class="cd-btn ">Get Started</a>
@@ -39,7 +39,7 @@ else
 
 <div class="cd-modal" id="modal-1">
 	<div class="modal-content">
-		<h2>What is DigiLocker</h2>
+		<h2>What is DigiLock ?</h2>
 		
 		<p>
 			Targeted at the idea of paperless governance, DigiLocker is a platform for issuance and verification of documents & certificates in a digital way, thus eliminating the use of physical documents. Indian citizens who sign up for a DigiLocker account get a dedicated cloud storage space that is linked to their Aadhaar (UIDAI) number. Organizations that are registered with Digital Locker can push electronic copies of documents and certificates (e.g. driving license, Voter ID, School certificates) directly into citizens lockers. Citizens can also upload scanned copies of their legacy documents in their accounts. These legacy documents can be electronically signed using the eSign facility.

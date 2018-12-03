@@ -20,8 +20,8 @@ if(isset($_POST['registerButton']))
 
 	if($wasSuccessful == true) 
 	{
-		$_SESSION['userLoggedIn'] = $username;
-		header("Location: index.php");
+		$_SESSION['userLoggedIn'] = $adharNumber;
+		header("Location:PAGES\UserView\index.php");
 	}
 
 }
@@ -40,7 +40,8 @@ function sanitizeFormUsername($inputText)
 	return $inputText;
 }
 
-function sanitizeFormString($inputText) {
+function sanitizeFormString($inputText) 
+{
 	$inputText = strip_tags($inputText);
 	$inputText = str_replace(" ", "", $inputText);
 	$inputText = ucfirst(strtolower($inputText));

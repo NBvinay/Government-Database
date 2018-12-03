@@ -21,19 +21,21 @@
         {
          
           // Nigga Change acc to db
-		  mysqli_query($con , "DELETE FROM `vehicle_details` WHERE `Aadhar Number` = '$adharNumber';");
-		  
-          $flag = 0;
+		      $res = mysqli_query($con , "DELETE FROM `vehicle_details` WHERE `Aadhar Number` = '$adharNumber';");
+		      if(!$res)
+            $flag = 0;
           
         }
         
         
       
-      if($flag == 1)
-      {
-        echo "Please enter all the vehicle details correctly";
-      }
-      $flag = 1;
+      // if($flag == 1)
+      // {
+        
+      //    print("Please enter all the vehicle details correctly") ;
+    
+      // }
+      // $flag = 1;
 
     
   }
